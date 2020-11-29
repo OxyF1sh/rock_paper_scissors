@@ -7,6 +7,59 @@
 
 </body>
 <script>
+let playerScore = 0;
+let computerScore = 0;
+function playRound(playerSelection, computerSelection) {
+  if (playerSelection.toLowerCase() === "rock"){
+    return computerSelection == "Rock" ? "Tie" : computerSelection == "Paper" ? "You lose" : "You win";
+  }
+  if (playerSelection.toLowerCase() === "paper"){
+    return computerSelection == "Rock" ? "You win" : computerSelection == "Paper" ? "Tie" : "You lose";
+  }
+  if (playerSelection.toLowerCase() === "scissors"){
+    return computerSelection == "Rock" ? "You lose" : computerSelection == "Paper" ? "You win" : "Tie";
+  }
+}
+function randomChoice(){
+    return Math.floor(Math.random()*3);
+}
+function computerPlay(){
+    let choice = randomChoice();
+    return choice == 0 ? "Rock" : choice == 1 ? "Paper" : "Scissors";
+    
+}
+
+function game(playerSelect){
+    const playerSelection = playerSelect;
+    const computerSelection = computerPlay();
+    let roundResult = playRound(playerSelection, computerSelection)
+    roundResult === "You win" ? playerScore++ :  roundResult === "You lose" ? computerScore++ : (playerScore++, computerScore++);
+    console.log(roundResult);
+}
+function checkWinner(){
+    if (playerScore > computerScore){
+        return "player";
+    }
+    else if (computerScore > playerScore) return "computer";
+    else return "tie";
+}
+
+for(let i = 0; i<5; i++){
+    let playerSelect = prompt("Enter value")
+    game(playerSelect)
+}
+const gameWinner = checkWinner();
+if (gameWinner === "player" || gameWinner === "computer"){
+    console.log("This winner is the " + gameWinner);
+}
+else console.log("The game is a " + gameWinner);
+
+
+
+
+
+
+
 
 </script>
-</html> 
+</html>
